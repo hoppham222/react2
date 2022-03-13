@@ -1,4 +1,5 @@
 import React from "react";
+import './csschild.scss';
 
 class ChidComponent extends React.Component {
 
@@ -10,6 +11,10 @@ class ChidComponent extends React.Component {
     this.setState({
       showjobs: !this.state.showjobs
     })
+  }
+
+  hendleDelete = (job) => {
+    this.props.deleteJob(job)
   }
   
   render() {
@@ -25,7 +30,7 @@ class ChidComponent extends React.Component {
       <>
         {showjobs === false ?
           <div className="show">
-            <button onClick={() => this.hendleShowHide()} >Show</button>
+            <button className="btn-show" onClick={() => this.hendleShowHide()} >Show</button>
           </div>
         
         :
@@ -36,7 +41,7 @@ class ChidComponent extends React.Component {
                 if (item.salary > 400) {
                   return (
                     <div key={item.id}>
-                      {item.title} - {item.salary} $
+                      {item.id} - {item.title} - {item.salary} $ $nbsp <span onClick={() => this.hendleDelete(item)}>x</span>
                     </div>
                   )
                 }
